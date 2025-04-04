@@ -1,6 +1,9 @@
 # Godot 4+ specific ignores
-Godogj/.godot/
-Godogj//android/
+Dev
 
 GodotEngine/*.exe
 GodotEngine/*/*.exe
+
+Godogj/.godot/
+Godogj//android/
+Godogj/Dev/
