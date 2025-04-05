@@ -5,6 +5,7 @@
 [sub_resource type="NavigationMesh" id="NavigationMesh_rd3vj"]
 vertices = PackedVector3Array(7.1, 0.8, -7.55, 7.35, 0.8, -6.55, 15.6, 0.8, -6.55, 15.6, 0.8, -25.05, -15.65, 0.8, -6.05, -7.4, 0.8, -5.8, -7.15, 0.8, -7.55, -15.65, 0.8, -25.05, -6.4, 4.3, 7.2, 7.35, 4.3, 7.2, -6.15, 4.3, 6.7, -6.15, 4.3, -6.05, 6.35, 4.3, -6.55, -6.4, 4.3, -6.55, 8.1, 0.8, 5.95, 8.35, 0.8, 7.2, 15.6, 0.8, 7.2, 7.1, 0.8, -5.3, 5.6, 0.8, -5.3, 5.85, 0.8, 5.95, -15.65, 0.8, 6.7, -7.4, 0.8, 6.45, -5.15, 0.8, -5.3, -5.15, 0.8, 5.95, 8.1, 0.8, 8.2, 15.6, 0.8, 24.95, -7.15, 0.8, 8.2, -15.65, 0.8, 24.95)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(6, 7, 0), PackedInt32Array(0, 7, 3), PackedInt32Array(10, 9, 8), PackedInt32Array(13, 12, 11), PackedInt32Array(11, 10, 13), PackedInt32Array(13, 10, 8), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(16, 17, 1), PackedInt32Array(16, 1, 2), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 14), PackedInt32Array(21, 20, 5), PackedInt32Array(5, 20, 4), PackedInt32Array(22, 18, 23), PackedInt32Array(23, 18, 19), PackedInt32Array(15, 16, 24), PackedInt32Array(24, 16, 25), PackedInt32Array(21, 26, 20), PackedInt32Array(20, 26, 27), PackedInt32Array(24, 25, 26), PackedInt32Array(26, 25, 27)]
+agent_height = 2.0
 
 [node name="Level" type="Node3D"]
 
@@ -33,7 +34,7 @@ use_collision = true
 size = Vector3(13.5, 3.7, 1)
 
 [node name="target" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9, 1.3, -21.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1, 1.3, -12.4)
 
 [node name="Enemy" parent="." instance=ExtResource("1_2q6dc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1.6, 14.4)

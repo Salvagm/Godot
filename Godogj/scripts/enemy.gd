@@ -10,11 +10,13 @@ class_name Enemy
 @onready var destination: Marker3D = currentScene.get_node("target")
 @onready var navSystem: NavigationAgent3D = $NavigationAgent3D
 
-func _physics_process(delta: float) -> void:
-
+func _ready() -> void:
 	if destination == null:
 		return
 	navSystem.target_position = destination.global_position
+
+func _physics_process(delta: float) -> void:
+	
 	var direction = navSystem.get_next_path_position() - global_position
 	direction = direction.normalized()
 	
