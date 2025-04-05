@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dokotkx28dxa2"]
+
+[ext_resource type="Script" uid="uid://dhpeq6bm26380" path="res://scripts/character.gd" id="1_agfs1"]
+
+[sub_resource type="Gradient" id="Gradient_vu45j"]
+offsets = PackedFloat32Array(0, 0.616175, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0346598, 0.0346598, 0.0346598, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_glpr6"]
+gradient = SubResource("Gradient_vu45j")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vu45j"]
+radius = 32.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_agfs1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_glpr6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vu45j")
