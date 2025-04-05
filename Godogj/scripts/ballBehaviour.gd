@@ -2,6 +2,7 @@ class_name Ball
 extends RigidBody2D
 
 var bounce_factor = 1
+@export var min_movement_force: float = 400.0;
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	var velocity := state.get_linear_velocity()
@@ -14,4 +15,8 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		if collider is Player:
 			collision_normal = collision_normal * -1.0
 			velocity = -collision_normal * collider.get_linear_velocity().length();
-			state.set_linear_velocity(velocity)
+			if velocity.length() > min_movement_force:
+				state.set_linear_velocity(velocity)
+			else:
+				collider.set_linear_velocity(collision_normal * 500)
+				state.set_linear_velocity(-collision_normal)
