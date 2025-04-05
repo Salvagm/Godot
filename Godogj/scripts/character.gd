@@ -12,7 +12,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	# Get input direction
 	var input_direction = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
 	var input_pressed = input_direction.length();
-	var shoot_presed = Input.is_action_just_released("Shoot");
+	var shoot_presed = Input.is_action_pressed("Shoot");
 
 	# Normalize diagonal movement
 	if input_direction.length() > 0:
