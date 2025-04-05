@@ -16,20 +16,22 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.a
-	var leftDirection := Input.is_action_pressed("MoveLeft")
-	var direction := Input.get_axis("ui_left", "ui_right")
+	#var leftDirection := Input.is_action_pressed("MoveLeft")
+	#var direction := Input.get_axis("ui_left", "ui_right")
 	
-	if direction:
-		velocity.x = direction * SPEED
+	#if direction:
+	#	velocity.x = direction * SPEED
 	
-	if Input.is_action_pressed("MoveLeft"):
-		velocity.x = direction * SPEED
+	#if Input.is_action_pressed("MoveLeft"):
+	#	velocity.x = direction * SPEED
 	#else:a
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	#	velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
 
 
-func _input(event):
-	if event.is_action_pressed("MoveLeft"):
+func _process(delta):
+	if Input.is_action_pressed("ui_right"):
 		velocity.x = 0.5 * SPEED
+	if Input.is_action_pressed("ui_left"):
+		velocity.x = 0.5 * -SPEED
