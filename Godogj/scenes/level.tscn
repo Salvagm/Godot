@@ -1,22 +1,31 @@
-[gd_scene format=3 uid="uid://cu5y7j3o1ctnu"]
+[gd_scene load_steps=2 format=3 uid="uid://cu5y7j3o1ctnu"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_rd3vj"]
+vertices = PackedVector3Array(7.1, 0.8, -7.55, 7.35, 0.8, -6.55, 15.6, 0.8, -6.55, 15.6, 0.8, -25.05, -15.65, 0.8, -6.05, -7.4, 0.8, -5.8, -7.15, 0.8, -7.55, -15.65, 0.8, -25.05, -6.4, 4.3, 7.2, 7.35, 4.3, 7.2, -6.15, 4.3, 6.7, -6.15, 4.3, -6.05, 6.35, 4.3, -6.55, -6.4, 4.3, -6.55, 8.1, 0.8, 5.95, 8.35, 0.8, 7.2, 15.6, 0.8, 7.2, 7.1, 0.8, -5.3, 5.6, 0.8, -5.3, 5.85, 0.8, 5.95, -15.65, 0.8, 6.7, -7.4, 0.8, 6.45, -5.15, 0.8, -5.3, -5.15, 0.8, 5.95, 8.1, 0.8, 8.2, 15.6, 0.8, 24.95, -7.15, 0.8, 8.2, -15.65, 0.8, 24.95)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(6, 7, 0), PackedInt32Array(0, 7, 3), PackedInt32Array(10, 9, 8), PackedInt32Array(13, 12, 11), PackedInt32Array(11, 10, 13), PackedInt32Array(13, 10, 8), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(16, 17, 1), PackedInt32Array(16, 1, 2), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 14), PackedInt32Array(21, 20, 5), PackedInt32Array(5, 20, 4), PackedInt32Array(22, 18, 23), PackedInt32Array(23, 18, 19), PackedInt32Array(15, 16, 24), PackedInt32Array(24, 16, 25), PackedInt32Array(21, 26, 20), PackedInt32Array(20, 26, 27), PackedInt32Array(24, 25, 26), PackedInt32Array(26, 25, 27)]
 
 [node name="Level" type="Node3D"]
 
-[node name="Floor" type="CSGBox3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+navigation_mesh = SubResource("NavigationMesh_rd3vj")
+
+[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 use_collision = true
 size = Vector3(32.3, 1, 51.1)
 
-[node name="Wall" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, -6.31554)
+[node name="Wall" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -6.31554)
 use_collision = true
 size = Vector3(13.5, 3.7, 1)
 
-[node name="Wall2" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.2, 2.4, 0.88446)
+[node name="Wall2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.2, 2.1, 0.88446)
 use_collision = true
 size = Vector3(13.5, 3.7, 1)
 
-[node name="Wall3" type="CSGBox3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.98446, 2.4, 7.18446)
+[node name="Wall3" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.999999, 0.00161808, 1.72095e-05, 0.00161811, 0.999997, 0.00180748, -1.43068e-05, 0.00180751, -0.999998, 0.98446, 2.1, 7.18446)
 use_collision = true
 size = Vector3(13.5, 3.7, 1)
