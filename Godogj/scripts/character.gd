@@ -29,6 +29,11 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func _input(event):
+	if event.is_action_pressed("ui_right"):
+		velocity.x = 0.5 * SPEED
+	if event.is_action_pressed("ui_left"):
+		velocity.x = 0.5 * -SPEED
 
 func _process(delta):
 	if Input.is_action_pressed("ui_right"):
