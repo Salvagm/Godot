@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl2tadgoab8vt"]
+[gd_scene load_steps=3 format=3 uid="uid://cl2tadgoab8vt"]
 
 [ext_resource type="Script" uid="uid://wemifwpwjx5" path="res://scripts/gameLogic.gd" id="1_20ljv"]
+[ext_resource type="PackedScene" uid="uid://cjx4cygbrxwg7" path="res://scenes/gameCamera.tscn" id="2_8rco8"]
 
 [node name="GameController" type="Node2D"]
 script = ExtResource("1_20ljv")
+
+[node name="Camera2D" parent="." instance=ExtResource("2_8rco8")]
+zoom = Vector2(0.5, 0.5)
