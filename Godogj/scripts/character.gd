@@ -3,6 +3,9 @@ extends CharacterBody2D
 @export var speed: float = 300.0
 @export var push_force: float = 10.0
 
+func _ready():
+	add_to_group("player")
+
 func _physics_process(delta):
 	# Get input direction
 	var input_direction = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
