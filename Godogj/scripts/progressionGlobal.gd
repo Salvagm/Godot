@@ -1,12 +1,12 @@
 extends Node
 
 var levelOne = "res://scene_1.tscn"
-var levelTwo = "res://scene_1.tscn"
+var levelTwo = "res://scenes/tempScene.tscn"
 
 var current_level = 1
 var current_scene = null
 
-var currentLevelTime = 10.0
+var currentLevelTime = 100.0
 
 func _ready():
 	current_scene = get_tree().current_scene
