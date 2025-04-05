@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://xajr1ohdln5x"
+path="res://.godot/imported/coin_stack_large.obj-448be8ef2b6b6b6b75903da9b56f741b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/coin_stack_large.obj-448be8ef2b6b6b6b75903da9b56f741b.mesh"]
+
+source_file="res://assets/environment/obj/coin_stack_large.obj"
+dest_files=["res://.godot/imported/coin_stack_large.obj-448be8ef2b6b6b6b75903da9b56f741b.mesh", "res://.godot/imported/coin_stack_large.obj-448be8ef2b6b6b6b75903da9b56f741b.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

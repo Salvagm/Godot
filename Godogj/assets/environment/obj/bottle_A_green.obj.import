@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://py0gkxp3g5l7"
+path="res://.godot/imported/bottle_A_green.obj-35a0e7da269b8e97aea5343c0e650420.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bottle_A_green.obj-35a0e7da269b8e97aea5343c0e650420.mesh"]
+
+source_file="res://assets/environment/obj/bottle_A_green.obj"
+dest_files=["res://.godot/imported/bottle_A_green.obj-35a0e7da269b8e97aea5343c0e650420.mesh", "res://.godot/imported/bottle_A_green.obj-35a0e7da269b8e97aea5343c0e650420.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
