@@ -9,7 +9,9 @@
 [node name="Level" parent="." instance=ExtResource("2_yqjtg")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(654, 637)
+position = Vector2(645, 636)
+zoom = Vector2(0.52, 0.52)
+editor_draw_limits = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(316, 543)
