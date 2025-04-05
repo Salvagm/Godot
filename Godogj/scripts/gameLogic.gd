@@ -1,7 +1,7 @@
 extends Node2D
 
 var current_game_level = null
-var max_game_time = 5.0
+var max_game_time = 6000.0
 var current_game_time = 0.0
 var levelOne = "res://scenes/game.tscn"
 
@@ -13,7 +13,6 @@ func load_new_game_level() ->void:
 		current_game_level.free()
 		print_debug("current level deleted")
 
-	creation += 1
 	current_game_time = max_game_time
 	
 	#if creation < 2:
@@ -49,5 +48,7 @@ func goto_scene(path):
 	
 	# Add it to the active scene, as child of root.
 	add_child(current_game_level)
+	
+	current_game_level.position = Vector2(-648, -638)
 	
 	print_debug("new level created")

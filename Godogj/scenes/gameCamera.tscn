@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cjx4cygbrxwg7"]
+
+[node name="Camera2D" type="Camera2D"]
+zoom = Vector2(0.52, 0.52)
+editor_draw_limits = true
