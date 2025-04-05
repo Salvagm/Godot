@@ -3,14 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://bw82hwcryr7o3" path="res://assets/Tilesheet/tilesheet.png" id="1_db3jm"]
 [ext_resource type="Script" uid="uid://b7iw3i3xe20s5" path="res://scripts/ballBehaviour.gd" id="1_vejso"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vkvod"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_db3jm"]
 radius = 23.0868
 
-[node name="BallBody2D" type="CharacterBody2D"]
+[node name="RigidBody2D" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp = 2.0
 script = ExtResource("1_vejso")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_vkvod")
+shape = SubResource("CircleShape2D_db3jm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_db3jm")

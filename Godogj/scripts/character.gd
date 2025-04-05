@@ -1,29 +1,31 @@
-extends CharacterBody2D
+class_name Player
+extends RigidBody2D
 
-@export var speed: float = 300.0
-@export var push_force: float = 10.0
+@export var speed: float = 350.0
+@export var decceleration: float = 400.0
+@export var push_force: float = 4.0
 
-func _ready():
-	add_to_group("player")
-
-func _physics_process(delta):
-	# Get input direction
-	var input_direction = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	var velocity := state.get_linear_velocity()
+	var step := state.get_step()
 	
+	# Get input direction
+	var input_direction = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
+	var input_pressed = input_direction.length();
+	var shoot_presed = Input.is_action_pressed("Shoot");
+
 	# Normalize diagonal movement
 	if input_direction.length() > 0:
 		input_direction = input_direction.normalized()
-	
+
 	# Calculate velocity
-	velocity = input_direction * speed
+	var final_speed = speed
+	if shoot_presed == true: 
+		final_speed *= push_force
+
+	if input_pressed > 0:
+		velocity = input_direction * final_speed
+	else:
+		velocity = velocity - velocity * decceleration * step * step
 	
-	# Move the character and check for collisions
-	var collision = move_and_collide(velocity * delta)
-	if collision:
-		if collision and collision.get_collider() is CharacterBody2D:
-		# Use collision normal to determine bounce direction
-			if Input.is_action_just_pressed("Shoot"):
-				var rb = collision.get_collider()
-				var force = -collision.get_normal() * push_force
-				rb.velocity = force
-		 
+	state.set_linear_velocity(velocity)
