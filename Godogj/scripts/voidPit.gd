@@ -3,9 +3,10 @@ extends Area2D
 func _ready():
 	# Connect signals in Godot 4 style
 	body_entered.connect(_on_body_entered)
+	add_to_group("pit")
 
 func _on_body_entered(body: Node):
-	if body.is_in_group("ball"):
+	if body is Ball:
 		# Optional effects before destruction
 		body.hide()  # Make invisible immediately
 		body.collision_layer = 0  # Disable collisions
