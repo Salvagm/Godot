@@ -1,17 +1,42 @@
 extends CharacterBody2D
 
-@export var speed: float = 300.0
 
-func _physics_process(delta):
-	# Get input direction
-	var input_direction = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
+const SPEED = 1200.0
+const JUMP_VELOCITY = -400.0
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	#if not is_on_flooui actr():
+	#	velocity += get_gravity() * delta
+
+	# Handle jump.
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	#	velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.a
+	#var leftDirection := Input.is_action_pressed("MoveLeft")
+	#var direction := Input.get_axis("ui_left", "ui_right")
 	
-	# Normalize diagonal movement
-	if input_direction.length() > 0:
-		input_direction = input_direction.normalized()
+	#if direction:
+	#	velocity.x = direction * SPEED
 	
-	# Calculate velocity
-	velocity = input_direction * speed
-	
-	# Move the character
+	#if Input.is_action_pressed("MoveLeft"):
+	#	velocity.x = direction * SPEED
+	#else:a
+	#	velocity.x = move_toward(velocity.x, 0, SPEED)
+
 	move_and_slide()
+
+func _input(event):
+	if event.is_action_pressed("ui_right"):
+		velocity.x = 0.5 * SPEED
+	if event.is_action_pressed("ui_left"):
+		velocity.x = 0.5 * -SPEED
+
+func _process(delta):
+	if Input.is_action_pressed("ui_right"):
+		velocity.x = 0.5 * SPEED
+	if Input.is_action_pressed("ui_left"):
+		velocity.x = 0.5 * -SPEED
