@@ -1,0 +1,128 @@
+[gd_scene load_steps=19 format=3 uid="uid://bo2mrxedafy6d"]
+
+[ext_resource type="PackedScene" uid="uid://0lsq7bhknkdf" path="res://assets/environment/gltf/floor_tile_extralarge_grates.gltf" id="1_ih0si"]
+[ext_resource type="PackedScene" uid="uid://gsarcofpj5wf" path="res://assets/environment/gltf/floor_tile_large.gltf" id="2_87bbc"]
+[ext_resource type="PackedScene" uid="uid://chw7frpovnjuh" path="res://assets/environment/gltf/floor_tile_small.gltf" id="3_qkdaf"]
+[ext_resource type="PackedScene" uid="uid://dqqqweu8l38qp" path="res://assets/environment/gltf/floor_tile_small_broken_A.gltf" id="4_38v2v"]
+[ext_resource type="PackedScene" uid="uid://dmdaqegg7twvp" path="res://assets/environment/gltf/floor_tile_small_broken_B.gltf" id="5_02g6w"]
+[ext_resource type="PackedScene" uid="uid://bvevp7qkw0d6h" path="res://assets/environment/gltf/floor_tile_small_decorated.gltf" id="6_0phir"]
+[ext_resource type="PackedScene" uid="uid://cc6i6myibwsle" path="res://assets/environment/gltf/floor_tile_small_weeds_A.gltf" id="7_ij0n8"]
+[ext_resource type="PackedScene" uid="uid://b120i2wwf3q70" path="res://assets/environment/gltf/floor_tile_large_rocks.gltf" id="8_foshs"]
+[ext_resource type="PackedScene" uid="uid://dwpxh4l7d4ntm" path="res://assets/environment/gltf/floor_tile_grate.gltf" id="9_qbtka"]
+[ext_resource type="PackedScene" uid="uid://rqilm00r8855" path="res://assets/environment/gltf/floor_dirt_small_corner.gltf" id="10_ywfd6"]
+[ext_resource type="PackedScene" uid="uid://bs3kfrvjlwbrj" path="res://assets/environment/gltf/floor_dirt_small_A.gltf" id="11_srgey"]
+[ext_resource type="PackedScene" uid="uid://dgxo7wcmcevos" path="res://assets/environment/gltf/floor_dirt_small_C.gltf" id="12_vjmfq"]
+[ext_resource type="PackedScene" uid="uid://b5qv1xrt5jmor" path="res://assets/environment/gltf/floor_dirt_small_weeds.gltf" id="13_2euht"]
+[ext_resource type="PackedScene" uid="uid://bmwsooiby1022" path="res://assets/environment/gltf/floor_dirt_small_D.gltf" id="14_bsyoe"]
+[ext_resource type="PackedScene" uid="uid://cjd0hyforkuwu" path="res://assets/environment/gltf/floor_dirt_large_rocky.gltf" id="15_a6yx0"]
+[ext_resource type="PackedScene" uid="uid://ddir0gt0nbyw7" path="res://assets/environment/gltf/floor_dirt_large.gltf" id="16_rn481"]
+[ext_resource type="PackedScene" uid="uid://b4xnpk5e87j10" path="res://assets/environment/gltf/floor_dirt_small_B.gltf" id="17_0umdb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ih0si"]
+size = Vector3(16.0031, 0.54895, 16.0214)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="floor_tile_extralarge_grates2" parent="StaticBody3D" instance=ExtResource("1_ih0si")]
+
+[node name="floor_tile_large2" parent="StaticBody3D" instance=ExtResource("2_87bbc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="floor_tile_small2" parent="StaticBody3D" instance=ExtResource("3_qkdaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
+
+[node name="floor_tile_small_broken_A2" parent="StaticBody3D" instance=ExtResource("4_38v2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
+
+[node name="floor_tile_small3" parent="StaticBody3D" instance=ExtResource("3_qkdaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
+
+[node name="floor_tile_small_broken_B2" parent="StaticBody3D" instance=ExtResource("5_02g6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
+
+[node name="floor_tile_small_decorated2" parent="StaticBody3D" instance=ExtResource("6_0phir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
+
+[node name="floor_tile_small_weeds_A2" parent="StaticBody3D" instance=ExtResource("7_ij0n8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
+
+[node name="floor_tile_small_broken_B3" parent="StaticBody3D" instance=ExtResource("5_02g6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+
+[node name="floor_tile_small_broken_B4" parent="StaticBody3D" instance=ExtResource("5_02g6w")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -7)
+
+[node name="floor_tile_large_rocks2" parent="StaticBody3D" instance=ExtResource("8_foshs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="floor_tile_grate2" parent="StaticBody3D" instance=ExtResource("9_qbtka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -3)
+
+[node name="floor_tile_grate3" parent="StaticBody3D" instance=ExtResource("9_qbtka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 3)
+
+[node name="floor_tile_grate4" parent="StaticBody3D" instance=ExtResource("9_qbtka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -3)
+
+[node name="floor_tile_grate5" parent="StaticBody3D" instance=ExtResource("9_qbtka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 3)
+
+[node name="floor_dirt_small_corner2" parent="StaticBody3D" instance=ExtResource("10_ywfd6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
+
+[node name="floor_dirt_small_corner3" parent="StaticBody3D" instance=ExtResource("10_ywfd6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, 5)
+
+[node name="floor_dirt_small_corner4" parent="StaticBody3D" instance=ExtResource("10_ywfd6")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, -5)
+
+[node name="floor_dirt_small_corner5" parent="StaticBody3D" instance=ExtResource("10_ywfd6")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 3, 0, -5)
+
+[node name="floor_dirt_small_A2" parent="StaticBody3D" instance=ExtResource("11_srgey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -7)
+
+[node name="floor_dirt_small_C2" parent="StaticBody3D" instance=ExtResource("12_vjmfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -7)
+
+[node name="floor_dirt_small_weeds2" parent="StaticBody3D" instance=ExtResource("13_2euht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
+
+[node name="floor_dirt_small_D2" parent="StaticBody3D" instance=ExtResource("14_bsyoe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
+
+[node name="floor_dirt_small_A4" parent="StaticBody3D" instance=ExtResource("11_srgey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
+
+[node name="floor_dirt_large_rocky2" parent="StaticBody3D" instance=ExtResource("15_a6yx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
+
+[node name="floor_dirt_large2" parent="StaticBody3D" instance=ExtResource("16_rn481")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6)
+
+[node name="floor_dirt_small_C3" parent="StaticBody3D" instance=ExtResource("12_vjmfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
+
+[node name="floor_dirt_small_weeds3" parent="StaticBody3D" instance=ExtResource("13_2euht")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, -7)
+
+[node name="floor_dirt_small_B2" parent="StaticBody3D" instance=ExtResource("17_0umdb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
+
+[node name="floor_dirt_small_C4" parent="StaticBody3D" instance=ExtResource("12_vjmfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -7)
+
+[node name="floor_dirt_small_D3" parent="StaticBody3D" instance=ExtResource("14_bsyoe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
+
+[node name="floor_dirt_small_A3" parent="StaticBody3D" instance=ExtResource("11_srgey")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 7)
+
+[node name="floor_dirt_small_B3" parent="StaticBody3D" instance=ExtResource("17_0umdb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0292358, -0.225525, -0.0142212)
+shape = SubResource("BoxShape3D_ih0si")
