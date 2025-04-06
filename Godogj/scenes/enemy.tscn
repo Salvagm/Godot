@@ -22,3 +22,5 @@ shape = SubResource("CapsuleShape3D_4ra3w")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 2.5
 simplify_path = true
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
