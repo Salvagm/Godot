@@ -4,6 +4,9 @@ Dev
 GodotEngine/*.exe
 GodotEngine/*/*.exe
 
+Godogj/addons/godot-git-plugin/*/*.dll
+Godogj/*/*.tmp
 Godogj/.godot/
 Godogj//android/
 Godogj/Dev/
+
