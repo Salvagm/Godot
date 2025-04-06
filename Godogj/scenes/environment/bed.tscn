@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://nxqd0v0uebq8"]
+
+[ext_resource type="PackedScene" uid="uid://bnw2gpvon1j0f" path="res://assets/environment/gltf/bed_decorated.gltf" id="1_epe67"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e2ydk"]
+size = Vector3(1.5, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_epe67"]
+size = Vector3(0.780762, 0.814453, 0.800659)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jyrot"]
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_e2ydk")
+
+[node name="bed_decorated2" parent="." instance=ExtResource("1_epe67")]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 1.34804, 0.407227, 0.937531)
+shape = SubResource("BoxShape3D_epe67")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.99007, 0, 0.140573, 0, 1, 0, -0.140573, 0, 0.99007, 1.30638, 0.497906, -0.990783)
+shape = SubResource("BoxShape3D_jyrot")
