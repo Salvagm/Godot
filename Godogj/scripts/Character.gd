@@ -11,6 +11,8 @@ var IsJumping : float = 0.0
 var IsAttacking : float = 0.0
 var IsSpecialAttack : float = 0.0
 
+var IsDead = false
+
 var AttackCooldown : float = 0.0
 var AttackTimer : float = 0.0
 
@@ -40,6 +42,9 @@ func _input(event: InputEvent) -> void:
 			
 
 func _process(delta: float) -> void:
+	if IsDead:
+		return
+	
 	if AttackCooldown > 0:
 		AttackCooldown -= delta
 		if AttackCooldown <= 0.0:
@@ -58,6 +63,8 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if IsDead:
+		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -97,4 +104,4 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func Kill():
-	pass
+	IsDead = true

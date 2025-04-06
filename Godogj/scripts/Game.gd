@@ -22,9 +22,10 @@ func _OnPlayerDied():
 	pass
 
 func SwitchLevel() ->void:
+	GameManager.IsGameOver = true
 	if CurrentGamelevel:
 		remove_child(CurrentGamelevel)
-		CurrentGamelevel.free()
+		CurrentGamelevel.queue_free()
 		print_debug("current level deleted")
 	
 	goto_scene(LevelPath)
@@ -37,5 +38,7 @@ func goto_scene(path):
 	
 	# Add it to the active scene, as child of root.
 	add_child(CurrentGamelevel)
+	
+	GameManager.IsGameOver = false
 	
 	print_debug("new level created")

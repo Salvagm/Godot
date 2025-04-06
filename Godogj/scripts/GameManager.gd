@@ -4,10 +4,10 @@ var RunNumber : int = 1
 var Score : int = 0
 var ScorePerKill : int = 1
 
+var IsGameOver : bool = false
+
 signal PlayerDiedSignal()
 signal PlayerWonSignal()
-
-var DebugTimerToTestLevelReset : float = 15.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,10 +15,7 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	DebugTimerToTestLevelReset -= delta
-	if DebugTimerToTestLevelReset < 0.0:
-		ResetGame()
-		DebugTimerToTestLevelReset = 15.0
+	pass
 	
 func ResetGame() -> void:
 	RunNumber += 1

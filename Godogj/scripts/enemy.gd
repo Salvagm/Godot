@@ -11,7 +11,6 @@ class_name Enemy extends CharacterBody3D
 
 # Initialize variables once before starting using them
 @onready var currentScene:= get_tree().current_scene as Node3D
-@onready var destination:= currentScene.get_node("target") as Marker3D
 @onready var navSystem:= $NavigationAgent3D as NavigationAgent3D
 @onready var player: Player = currentScene.get_node("Level").get_node("Player")
 
@@ -27,13 +26,14 @@ func _ready() -> void:
 	LastKnownLocation = global_position
 
 func _physics_process(delta: float) -> void:
+	if is_dead() or GameManager.IsGameOver:
+		return
 	update_target(delta)
 	update_look_direction()	
 	find_location_to_move()
 	move_to_target(delta)
 
 func update_target(delta: float):
-
 	var playerLocation = player.global_transform.origin
 	var currentLocation = global_transform.origin	
 	#draw_line(currentScene.global_position + playerLocation, currentScene.global_position + currentLocation, Color.PINK)
@@ -64,7 +64,7 @@ func check_visibility(direction: Vector3) -> Dictionary:
 
 	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(raycastOrigin, raycastEnd)
 	query.collide_with_bodies = true
-	query.collide_with_areas = true
+	query.collide_with_areas = false
 	query.collision_mask = 0xFFFFFFFF
 	query.exclude = [self]
 	var hitResult = space_state.intersect_ray(query)
@@ -88,8 +88,7 @@ func move_to_target(delta: float) -> void:
 func update_look_direction() -> void:
 	#var lookDirection: Vector3 = Vector3.INF
 	if velocity != Vector3.ZERO:
-		var lookDirection = velocity
-		look_at(lookDirection)
+		look_at(CurrentTarget.global_position)
 		global_rotation.x = 0
 
 func find_location_to_move():
@@ -98,20 +97,21 @@ func find_location_to_move():
 
 func Kill() -> void:
 	IsDead = true
+	queue_free()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is Player:
 		GameManager.RegisterHit($".", body)
 
-@onready var level_debug_mesh: MeshInstance3D = currentScene.get_node("Level/LevelDebugMesh")
-func draw_line(startPoint: Vector3, endPoint :Vector3, inColor: Color):
-	var mat = StandardMaterial3D.new()
-	mat.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
-	mat.albedo_color = inColor
-	
-	level_debug_mesh.mesh = ImmediateMesh.new()
-	level_debug_mesh.material_override = mat
-	level_debug_mesh.mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-	level_debug_mesh.mesh.surface_add_vertex(startPoint)
-	level_debug_mesh.mesh.surface_add_vertex(endPoint)
-	level_debug_mesh.mesh.surface_end()
+#@onready var level_debug_mesh: MeshInstance3D = currentScene.get_node("Level/LevelDebugMesh")
+#func draw_line(startPoint: Vector3, endPoint :Vector3, inColor: Color):
+	#var mat = StandardMaterial3D.new()
+	#mat.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
+	#mat.albedo_color = inColor
+	#
+	#level_debug_mesh.mesh = ImmediateMesh.new()
+	#level_debug_mesh.material_override = mat
+	#level_debug_mesh.mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+	#level_debug_mesh.mesh.surface_add_vertex(startPoint)
+	#level_debug_mesh.mesh.surface_add_vertex(endPoint)
+	#level_debug_mesh.mesh.surface_end()
