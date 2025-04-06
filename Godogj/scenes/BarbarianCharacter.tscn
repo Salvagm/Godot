@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://qsjkvcf3yqbk"]
+[gd_scene load_steps=4 format=3 uid="uid://bq1jxvp0pntrh"]
 
 [ext_resource type="Script" uid="uid://c8eomangvu0fy" path="res://scripts/CharacterMovement.gd" id="1_36qky"]
 [ext_resource type="PackedScene" uid="uid://bsp7r87lhoge0" path="res://assets/adventurer/characters/gltf/Barbarian.glb" id="1_x86cy"]

@@ -1,48 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://cu5y7j3o1ctnu"]
+[gd_scene load_steps=4 format=3 uid="uid://cu5y7j3o1ctnu"]
 
-[ext_resource type="PackedScene" uid="uid://qsjkvcf3yqbk" path="res://scenes/BarbarianCharacter.tscn" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://b0em2q3c6qaq5" path="res://scenes/enemy.tscn" id="1_2q6dc"]
+[ext_resource type="PackedScene" path="res://scenes/BarbarianCharacter.tscn" id="2_w7c3h"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_rd3vj"]
+vertices = PackedVector3Array(7.1, 0.8, -7.55, 7.35, 0.8, -6.55, 15.6, 0.8, -6.55, 15.6, 0.8, -25.05, -15.65, 0.8, -6.05, -7.4, 0.8, -5.8, -7.15, 0.8, -7.55, -15.65, 0.8, -25.05, -6.4, 4.3, 7.2, 7.35, 4.3, 7.2, -6.15, 4.3, 6.7, -6.15, 4.3, -6.05, 6.35, 4.3, -6.55, -6.4, 4.3, -6.55, 8.1, 0.8, 5.95, 8.35, 0.8, 7.2, 15.6, 0.8, 7.2, 7.1, 0.8, -5.3, 5.6, 0.8, -5.3, 5.85, 0.8, 5.95, -15.65, 0.8, 6.7, -7.4, 0.8, 6.45, -5.15, 0.8, -5.3, -5.15, 0.8, 5.95, 8.1, 0.8, 8.2, 15.6, 0.8, 24.95, -7.15, 0.8, 8.2, -15.65, 0.8, 24.95)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(6, 7, 0), PackedInt32Array(0, 7, 3), PackedInt32Array(10, 9, 8), PackedInt32Array(13, 12, 11), PackedInt32Array(11, 10, 13), PackedInt32Array(13, 10, 8), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(16, 17, 1), PackedInt32Array(16, 1, 2), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 14), PackedInt32Array(21, 20, 5), PackedInt32Array(5, 20, 4), PackedInt32Array(22, 18, 23), PackedInt32Array(23, 18, 19), PackedInt32Array(15, 16, 24), PackedInt32Array(24, 16, 25), PackedInt32Array(21, 26, 20), PackedInt32Array(20, 26, 27), PackedInt32Array(24, 25, 26), PackedInt32Array(26, 25, 27)]
+agent_height = 2.0
 
 [node name="Level" type="Node3D"]
 
-[node name="Floor" type="CSGBox3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+navigation_mesh = SubResource("NavigationMesh_rd3vj")
+
+[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 use_collision = true
 size = Vector3(32.3, 1, 51.1)
 
-[node name="Wall" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, -6.31554)
+[node name="Wall" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -6.31554)
 use_collision = true
 size = Vector3(13.5, 3.7, 1)
 
-[node name="Wall2" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.2, 2.4, 0.88446)
+[node name="Wall2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.2, 2.1, 0.88446)
 use_collision = true
 size = Vector3(13.5, 3.7, 1)
 
-[node name="Wall3" type="CSGBox3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.98446, 2.4, 7.18446)
+[node name="Wall3" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.999999, 0.00161808, 1.72095e-05, 0.00161811, 0.999997, 0.00180748, -1.43068e-05, 0.00180751, -0.999998, 0.98446, 2.1, 7.18446)
 use_collision = true
 size = Vector3(13.5, 3.7, 1)
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.65215, 10.6471, 0.613117)
+[node name="target" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1, 1.3, -12.4)
 
-<<<<<<< HEAD
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.363089, 0.931755, 0, -0.931755, 0.363089, 7.92396, 17.86, 10.7922)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 0.934733, -0.355352, 0, 0.355352, 0.934733, -7.92396, -3.63618, 2.46485)
-light_energy = 0.847
-light_indirect_energy = 0.462
-=======
 [node name="Enemy" parent="." instance=ExtResource("1_2q6dc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1.6, 14.4)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.00152958, -0.866521, 0.499138, -0.0004279, 0.499138, 0.866523, -0.999999, -0.00153899, 0.000392685, 14.6404, 23.0012, 0.617851)
+transform = Transform3D(-4.37114e-08, -0.897258, 0.441506, 0, 0.441506, 0.897258, -1, 3.92204e-08, -1.92988e-08, 17.2426, 19.728, -1.95889)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
-transform = Transform3D(-0.988342, -0.147227, 0.038784, 0.126058, -0.934168, -0.333826, 0.0853791, -0.325045, 0.941836, 0, 0.702212, 2.75208)
-light_energy = 0.52
-light_indirect_energy = 2.28
->>>>>>> 87d4b69 (Camera)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_w7c3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.80739, 1.44027, -15.0908)

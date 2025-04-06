@@ -5,8 +5,8 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 func _process(delta: float) -> void:
-	if is_on_floor()
-		get_node(model).
+	if is_on_floor():
+		pass
 
 
 func _physics_process(delta: float) -> void:
