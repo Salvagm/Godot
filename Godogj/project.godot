@@ -49,3 +49,7 @@ MoveDown={
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Enemy"
 3d_physics/layer_4="PickUps"
+
+[physics]
+
+3d/default_gravity=15.0
