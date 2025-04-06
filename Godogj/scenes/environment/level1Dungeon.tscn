@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy8bewf8ntpfn"]
+
+[ext_resource type="PackedScene" uid="uid://bo2mrxedafy6d" path="res://scenes/environment/dungeon_end_arena.tscn" id="1_mnpcl"]
+[ext_resource type="PackedScene" uid="uid://bbe40pga4x3hp" path="res://scenes/environment/groundBlock.tscn" id="2_yf7mh"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="FinalArena" parent="." instance=ExtResource("1_mnpcl")]
+
+[node name="Node3D" parent="." instance=ExtResource("2_yf7mh")]
+
+[node name="Node3D2" parent="." instance=ExtResource("2_yf7mh")]
+transform = Transform3D(-1.49012e-08, 0, -1, 0, 1, 0, 1, 0, -1.49012e-08, 0, 0, 0)
+
+[node name="Node3D3" parent="." instance=ExtResource("2_yf7mh")]
+transform = Transform3D(-1, 0, 5.86125e-08, 0, 1, 0, -5.86125e-08, 0, -1, 0, 0, 0)
+
+[node name="Node3D4" parent="." instance=ExtResource("2_yf7mh")]
+transform = Transform3D(1.02324e-07, 0, 1, 0, 1, 0, -1, 0, 1.02324e-07, 0, 0, 0)

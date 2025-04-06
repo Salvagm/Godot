@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c53ah3tgkb5dy"]
+
+[ext_resource type="PackedScene" uid="uid://b7jh5cml0q7ob" path="res://assets/environment/gltf/stairs_walled.gltf" id="1_dpcmw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dpcmw"]
+size = Vector3(1, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_232aw"]
+size = Vector3(3.94629, 4, 5.49048)
+
+[node name="StairBody3D" type="StaticBody3D"]
+
+[node name="stairs_walled2" parent="." instance=ExtResource("1_dpcmw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99, 2, -2)
+shape = SubResource("BoxShape3D_dpcmw")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01, 2, -2)
+shape = SubResource("BoxShape3D_dpcmw")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -0.472491, 0.66099, -3.29049)
+shape = SubResource("BoxShape3D_232aw")
