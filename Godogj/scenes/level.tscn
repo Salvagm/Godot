@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cu5y7j3o1ctnu"]
+[gd_scene load_steps=6 format=3 uid="uid://cu5y7j3o1ctnu"]
 
-[ext_resource type="PackedScene" uid="uid://b0em2q3c6qaq5" path="res://scenes/enemy.tscn" id="1_2q6dc"]
-[ext_resource type="PackedScene" uid="uid://bq1jxvp0pntrh" path="res://scenes/BarbarianCharacter.tscn" id="2_w7c3h"]
-[ext_resource type="Script" uid="uid://c5x4jxt40fl0r" path="res://scripts/Camera.gd" id="2_w8frs"]
+[ext_resource type="PackedScene" uid="uid://b0em2q3c6qaq5" path="res://scenes/enemies/SkeletonWizard.tscn" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://bo2mrxedafy6d" path="res://scenes/environment/dungeon_end_arena.tscn" id="1_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://qsjkvcf3yqbk" path="res://scenes/BarbarianCharacter.tscn" id="2_w7c3h"]
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="2_w8frs"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rd3vj"]
-vertices = PackedVector3Array(7.1, 0.8, -7.55, 7.35, 0.8, -6.55, 15.6, 0.8, -6.55, 15.6, 0.8, -25.05, -15.65, 0.8, -6.05, -7.4, 0.8, -5.8, -7.15, 0.8, -7.55, -15.65, 0.8, -25.05, -6.4, 4.3, 7.2, 7.35, 4.3, 7.2, -6.15, 4.3, 6.7, -6.15, 4.3, -6.05, 6.35, 4.3, -6.55, -6.4, 4.3, -6.55, 8.1, 0.8, 5.95, 8.35, 0.8, 7.2, 15.6, 0.8, 7.2, 7.1, 0.8, -5.3, 5.6, 0.8, -5.3, 5.85, 0.8, 5.95, -15.65, 0.8, 6.7, -7.4, 0.8, 6.45, -5.15, 0.8, -5.3, -5.15, 0.8, 5.95, 8.1, 0.8, 8.2, 15.6, 0.8, 24.95, -7.15, 0.8, 8.2, -15.65, 0.8, 24.95)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(6, 7, 0), PackedInt32Array(0, 7, 3), PackedInt32Array(10, 9, 8), PackedInt32Array(13, 12, 11), PackedInt32Array(11, 10, 13), PackedInt32Array(13, 10, 8), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(16, 17, 1), PackedInt32Array(16, 1, 2), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 14), PackedInt32Array(21, 20, 5), PackedInt32Array(5, 20, 4), PackedInt32Array(22, 18, 23), PackedInt32Array(23, 18, 19), PackedInt32Array(15, 16, 24), PackedInt32Array(24, 16, 25), PackedInt32Array(21, 26, 20), PackedInt32Array(20, 26, 27), PackedInt32Array(24, 25, 26), PackedInt32Array(26, 25, 27)]
-agent_height = 2.0
+vertices = PackedVector3Array(-7.50001, 0.77, 0.725079, -6.75001, 0.77, 0.725079, -6.75001, 0.77, 0.225079, -7.50001, 0.52, -7.52492, -1.23978e-05, 0.52, -5.52492, 0.999988, 0.52, -5.77492, 0.999988, 0.52, -7.52492, -4.50001, 0.52, 0.225079, 0.499988, 0.52, -4.27492, -1.23978e-05, 0.52, -4.52492, 1.49999, 0.52, -5.77492, 7.49999, 0.52, -7.52492, -5.00001, 0.52, 1.47508, -7.50001, 0.52, 7.47508, 1.49999, 0.52, -4.77492, 7.49999, 0.52, 7.47508)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(9, 8, 7), PackedInt32Array(4, 9, 7), PackedInt32Array(2, 3, 7), PackedInt32Array(7, 3, 4), PackedInt32Array(4, 3, 6), PackedInt32Array(5, 6, 10), PackedInt32Array(10, 6, 11), PackedInt32Array(1, 12, 0), PackedInt32Array(0, 12, 13), PackedInt32Array(14, 11, 8), PackedInt32Array(8, 11, 12), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 15), PackedInt32Array(12, 7, 8), PackedInt32Array(14, 10, 11)]
+agent_height = 2.2
 
 [node name="Level" type="Node3D"]
 
@@ -15,42 +16,24 @@ agent_height = 2.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 navigation_mesh = SubResource("NavigationMesh_rd3vj")
 
-[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
-use_collision = true
-size = Vector3(32.3, 1, 51.1)
-
-[node name="Wall" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -6.31554)
-use_collision = true
-size = Vector3(13.5, 3.7, 1)
-
-[node name="Wall2" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.2, 2.1, 0.88446)
-use_collision = true
-size = Vector3(13.5, 3.7, 1)
-
-[node name="Wall3" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(-0.999999, 0.00161808, 1.72095e-05, 0.00161811, 0.999997, 0.00180748, -1.43068e-05, 0.00180751, -0.999998, 0.98446, 2.1, 7.18446)
-use_collision = true
-size = Vector3(13.5, 3.7, 1)
+[node name="Node3D" parent="NavigationRegion3D" instance=ExtResource("1_mx8sn")]
 
 [node name="target" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1, 1.3, -12.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.2, -5)
 
 [node name="Enemy" parent="." instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1.6, 14.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 0.1, 6.6)
 collision_layer = 1
 collision_mask = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -8.04731e-08, 3.41588e-08, 0, 0.390731, 0.920505, -8.74228e-08, 0.920505, -0.390731, 17.2426, 19.728, -1.95889)
+transform = Transform3D(-1, -8.04731e-08, 3.41588e-08, 3.55271e-15, 0.390731, 0.920505, -8.74228e-08, 0.920505, -0.390731, 0.642599, 7.828, -4.65889)
 fov = 90.0
 script = ExtResource("2_w8frs")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
 
 [node name="Player" parent="." instance=ExtResource("2_w7c3h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.68202, 9.53215, -15.1156)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31798, 0.23215, -0.215599)
 collision_layer = 2
 collision_mask = 7

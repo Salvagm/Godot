@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cej5cg3qgwjho"]
+
+[ext_resource type="Script" uid="uid://ckwym7j4jm8db" path="res://scripts/enemy.gd" id="1_tchpk"]
+[ext_resource type="PackedScene" uid="uid://bpve43rn85g3g" path="res://assets/skeleton/characters/gltf/Skeleton_Warrior.glb" id="2_tchpk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ra3w"]
+height = 2.2
+
+[node name="Enemy" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_tchpk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CapsuleShape3D_4ra3w")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.5
+simplify_path = true
+
+[node name="Skeleton_Warrior" parent="." instance=ExtResource("2_tchpk")]
+
+[node name="Skeleton_Warrior_Helmet" parent="Skeleton_Warrior/Rig/Skeleton3D" index="0"]
+transform = Transform3D(1, -2.20965e-22, 1.69407e-21, 2.20965e-22, 1, 0, -1.69407e-21, 3.58732e-43, 1, 0, 1.21587, -1.35973e-07)
+
+[editable path="Skeleton_Warrior"]
