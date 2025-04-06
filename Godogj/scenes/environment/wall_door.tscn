@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bifub1m6h63bu"]
+
+[ext_resource type="PackedScene" uid="uid://b127djpkjgdt7" path="res://assets/environment/gltf/wall_doorway.gltf" id="1_i2au2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i2au2"]
+size = Vector3(1, 4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yak05"]
+size = Vector3(0.394287, 2.74854, 2.04706)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="wall_doorway2" parent="." instance=ExtResource("1_i2au2")]
+
+[node name="wall_doorway_door" parent="wall_doorway2/wall_doorway" index="0"]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -0.820099, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 2, 0)
+shape = SubResource("BoxShape3D_i2au2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2, 0)
+shape = SubResource("BoxShape3D_i2au2")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -1.0344, 1.37427, 0.808825)
+shape = SubResource("BoxShape3D_yak05")
+
+[editable path="wall_doorway2"]

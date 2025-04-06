@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bo2mrxedafy6d" path="res://scenes/environment/dungeon_end_arena.tscn" id="1_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://bq1jxvp0pntrh" path="res://scenes/BarbarianCharacter.tscn" id="2_w7c3h"]
 [ext_resource type="Script" uid="uid://c5x4jxt40fl0r" path="res://scripts/Camera.gd" id="2_w8frs"]
-[ext_resource type="PackedScene" path="res://scenes/environment/level1Dungeon.tscn" id="5_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://cy8bewf8ntpfn" path="res://scenes/environment/level1Dungeon.tscn" id="5_ppgk2"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rd3vj"]
 vertices = PackedVector3Array(-7.50001, 0.77, 0.725079, -6.75001, 0.77, 0.725079, -6.75001, 0.77, 0.225079, -7.50001, 0.52, -7.52492, -1.23978e-05, 0.52, -5.52492, 0.999988, 0.52, -5.77492, 0.999988, 0.52, -7.52492, -4.50001, 0.52, 0.225079, 0.499988, 0.52, -4.27492, -1.23978e-05, 0.52, -4.52492, 1.49999, 0.52, -5.77492, 7.49999, 0.52, -7.52492, -5.00001, 0.52, 1.47508, -7.50001, 0.52, 7.47508, 1.49999, 0.52, -4.77492, 7.49999, 0.52, 7.47508)

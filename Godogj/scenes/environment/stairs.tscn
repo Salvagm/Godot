@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://h5p02hmmsssy"]
+
+[ext_resource type="PackedScene" uid="uid://wvl504ccwit2" path="res://assets/environment/gltf/stairs.gltf" id="1_tdv52"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tdv52"]
+size = Vector3(4, 0.711426, 5.68994)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="stairs2" parent="." instance=ExtResource("1_tdv52")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 1.73773, 2.16621)
+shape = SubResource("BoxShape3D_tdv52")
