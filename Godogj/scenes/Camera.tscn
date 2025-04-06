@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjyqd5w1jgp6k"]
+
+[ext_resource type="Script" uid="uid://c5x4jxt40fl0r" path="res://scripts/Camera.gd" id="1_a3ute"]
+
+[node name="Camera3D" type="Camera3D"]
+transform = Transform3D(-1, 7.41387e-08, -4.6327e-08, 0, 0.529919, 0.848048, 8.74228e-08, 0.848048, -0.529919, 0, 0, 0)
+fov = 78.0
+script = ExtResource("1_a3ute")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

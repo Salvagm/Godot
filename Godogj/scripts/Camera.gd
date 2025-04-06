@@ -1,6 +1,6 @@
 extends Camera3D
 
-var DistanceToPlayer = Vector3(0.0, 10, -1.5)
+var DistanceToPlayer = Vector3(0.0, 12, -3.8)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

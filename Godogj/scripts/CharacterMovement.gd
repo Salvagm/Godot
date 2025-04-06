@@ -1,6 +1,10 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 @onready var animation_tree: AnimationTree = $Model/AnimationTree
+
+var OffHandAttackStart : float = 0.5
+var OffHandAttackEnd : float = 0.8
+var DamageEnabled : bool = false
 
 var IsRunning : float = 0.0
 var IsJumping : float = 0.0
@@ -8,6 +12,7 @@ var IsAttacking : float = 0.0
 var IsSpecialAttack : float = 0.0
 
 var AttackCooldown : float = 0.0
+var AttackTimer : float = 0.0
 
 const SPEED = 8.5
 const JUMP_VELOCITY = 5
@@ -24,11 +29,13 @@ func _input(event: InputEvent) -> void:
 			IsAttacking = 1.0
 			AttackCooldown = 1.0
 			IsSpecialAttack = 0.0
+			AttackTimer = 0
 			animation_tree["parameters/AttackOneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 		elif event.is_action_pressed("AttackSpecial"):
 			IsAttacking = 1.0
 			IsSpecialAttack = 1.0
 			AttackCooldown = 1.2
+			AttackTimer = 0
 			animation_tree["parameters/AttackOneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 			
 
@@ -39,6 +46,14 @@ func _process(delta: float) -> void:
 			AttackCooldown = 0.0
 			IsAttacking = 0.0
 			IsSpecialAttack = 0.0
+			DamageEnabled = false
+	if IsAttacking > 0:
+		AttackTimer += delta
+		if IsSpecialAttack:
+			DamageEnabled = AttackTimer >= 0.5 and AttackTimer < 0.8
+		else:
+			DamageEnabled = AttackTimer >= 0.3 and AttackTimer < 0.6
+			
 	update_anim_tree()
 
 

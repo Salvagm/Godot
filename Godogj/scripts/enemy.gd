@@ -36,3 +36,7 @@ func update_look_direction() -> void:
 	var lookAtLocation: Vector3 = -navSystem.target_position;
 	lookAtLocation.y = 0
 	look_at(lookAtLocation)
+
+func Kill() -> void:
+	print("enemy dead")
+	pass
