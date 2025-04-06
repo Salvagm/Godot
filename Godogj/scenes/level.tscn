@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://co3frmhhrl5a0"]
+[gd_scene load_steps=5 format=3 uid="uid://co3frmhhrl5a0"]
 
 [ext_resource type="PackedScene" uid="uid://b0em2q3c6qaq5" path="res://scenes/enemies/SkeletonWizard.tscn" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://cxto6ttjrbwaj" path="res://scenes/BarbarianCharacter.tscn" id="2_w7c3h"]
 [ext_resource type="Script" uid="uid://c5x4jxt40fl0r" path="res://scripts/Camera.gd" id="2_w8frs"]
 [ext_resource type="PackedScene" uid="uid://cy8bewf8ntpfn" path="res://scenes/environment/level1Dungeon.tscn" id="5_ppgk2"]
-[ext_resource type="Script" uid="uid://boeqyp7i1aiu0" path="res://scripts/UI/ScoreHudComponent.gd" id="6_2r41h"]
 
 [node name="Level" type="Node3D"]
 
@@ -70,18 +69,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -4, 30)
 
 [node name="Enemy17" parent="." instance=ExtResource("1_2q6dc")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -4, -4, 30)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -245.0
-offset_top = 33.0
-offset_right = -57.0
-offset_bottom = 131.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 40
-horizontal_alignment = 2
-script = ExtResource("6_2r41h")

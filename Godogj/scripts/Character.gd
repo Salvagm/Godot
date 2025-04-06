@@ -95,3 +95,6 @@ func _physics_process(delta: float) -> void:
 		IsJumping = 0.0
 
 	move_and_slide()
+	
+func Kill():
+	pass

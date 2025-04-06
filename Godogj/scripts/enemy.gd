@@ -40,3 +40,8 @@ func update_look_direction() -> void:
 func Kill() -> void:
 	print("enemy dead")
 	pass
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body is Player:
+		GameManager.RegisterHit($".", body)
