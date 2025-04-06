@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GodoGJ"
-run/main_scene="uid://cu5y7j3o1ctnu"
+run/main_scene="uid://co3frmhhrl5a0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
