@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://co3frmhhrl5a0"]
+[gd_scene load_steps=7 format=3 uid="uid://co3frmhhrl5a0"]
 
 [ext_resource type="PackedScene" uid="uid://b0em2q3c6qaq5" path="res://scenes/enemies/SkeletonWizard.tscn" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://cxto6ttjrbwaj" path="res://scenes/BarbarianCharacter.tscn" id="2_w7c3h"]
 [ext_resource type="Script" uid="uid://c5x4jxt40fl0r" path="res://scripts/Camera.gd" id="2_w8frs"]
 [ext_resource type="PackedScene" uid="uid://cy8bewf8ntpfn" path="res://scenes/environment/level1Dungeon.tscn" id="5_ppgk2"]
 [ext_resource type="Script" uid="uid://boeqyp7i1aiu0" path="res://scripts/UI/ScoreHudComponent.gd" id="6_2r41h"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_ppgk2"]
 
 [node name="Level" type="Node3D"]
 
@@ -85,3 +87,6 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 2
 script = ExtResource("6_2r41h")
+
+[node name="LevelDebugMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("ImmediateMesh_ppgk2")

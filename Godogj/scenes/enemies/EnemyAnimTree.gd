@@ -23,11 +23,9 @@ func update_tree():
 
 func run(delta: float):
 	RunValue = lerpf(RunValue, 1, BlendSpeed * delta)
-	pass
 	
 func idle(delta: float):
 	RunValue = lerpf(RunValue, 0, BlendSpeed * delta)
-	pass
 
 func _physics_process(delta: float) -> void:
 	enemy.velocity

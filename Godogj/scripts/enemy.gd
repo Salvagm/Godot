@@ -5,46 +5,73 @@ class_name Enemy extends CharacterBody3D
 @export var movement_acceleration:= 5.0 as float
 @export var movement_deceleration:= 10.0 as float
 
+@export var vision_distance_meters:= 10 as float
+@export var vision_cone_degrees:= 60 as float
+@export var vision_eye_heigth:= 1.8 as float
+
 # Initialize variables once before starting using them
 @onready var currentScene:= get_tree().current_scene as Node3D
 @onready var destination:= currentScene.get_node("target") as Marker3D
 @onready var navSystem:= $NavigationAgent3D as NavigationAgent3D
-@onready var enemyBrain: NewEnemyBrain = $NewEnemyBrain
+@onready var player: Player = currentScene.get_node("Level").get_node("Player")
 
-var locationToMove: Vector3
+var LastKnownLocation: Vector3
 var IsDead:= false as bool
+var CurrentTarget: Player = null
+var visionDistanceSquared: float = 0.0
+var coneRangeValue: float = 0.0
 
 func _ready() -> void:
-	if destination == null:
-		return
-	locationToMove = destination.global_position
-	
-@onready var player: CharacterBody3D = $"../Player"
+	visionDistanceSquared = vision_distance_meters * vision_distance_meters
+	coneRangeValue = cos(deg_to_rad(vision_cone_degrees))
+	LastKnownLocation = global_position
 
 func _physics_process(delta: float) -> void:
+	update_target(delta)
+	update_look_direction()	
+	find_location_to_move()
+	move_to_target(delta)
+
+func update_target(delta: float):
+
+	var playerLocation = player.global_transform.origin
+	var currentLocation = global_transform.origin	
+	#draw_line(currentScene.global_position + playerLocation, currentScene.global_position + currentLocation, Color.PINK)
 	
+	 #Not in distance range
+	if currentLocation.distance_squared_to(playerLocation) > visionDistanceSquared:
+		return
+	
+	var faceDirection = global_transform.basis.z;
+	var enemyToPlayerDirection = currentLocation.direction_to(playerLocation).normalized()	
+	var dotResult = faceDirection.dot(enemyToPlayerDirection)
+	# Not in cone
+	if dotResult < coneRangeValue:
+		return
+		
+	var hitResult = check_visibility(enemyToPlayerDirection)
+
+	if hitResult.is_empty() == false and hitResult["collider"] is Player:
+		CurrentTarget = hitResult["collider"]
+	elif CurrentTarget != null:
+		LastKnownLocation = CurrentTarget.global_position
+
+func check_visibility(direction: Vector3) -> Dictionary:
 	var space_state = get_world_3d().direct_space_state
-	var raycastOrigin = global_transform.origin #+ global_transform.basis.z.normalized() * 1.3 + global_transform.basis.y.normalized() * 1.2;
-	var raycastEnd = player.global_transform.origin# raycastOrigin + global_transform.basis.z.normalized() * 10
-	
+
+	var raycastOrigin = global_transform.origin + Vector3.UP * 1.6
+	var raycastEnd = raycastOrigin + direction * vision_distance_meters
 
 	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(raycastOrigin, raycastEnd)
 	query.collide_with_bodies = true
-	#query.collide_with_areas = true
-	query.collision_mask = collision_mask
-	#query.exclude = [Owner]
-	var hitResult: Dictionary = space_state.intersect_ray(query)
-	#draw_spheres(raycastOrigin,raycastEnd, Color.YELLOW )
-
-	#print(global_position)
-	update_look_direction()
-	move_to_target(delta)
+	query.collide_with_areas = true
+	query.collision_mask = 0xFFFFFFFF
+	query.exclude = [self]
+	var hitResult = space_state.intersect_ray(query)
+	return hitResult	
 
 func is_dead() -> bool:
 	return IsDead
-
-func set_target_to_move(target: Vector3) -> void:
-	locationToMove = target
 
 func move_to_target(delta: float) -> void:
 	if navSystem.is_target_reached():
@@ -59,46 +86,28 @@ func move_to_target(delta: float) -> void:
 	move_and_slide()
 
 func update_look_direction() -> void:
-	var lookAtLocation: Vector3 = -navSystem.target_position;
-	lookAtLocation.y = 0
-	look_at(lookAtLocation)
+	#var lookDirection: Vector3 = Vector3.INF
+	if velocity != Vector3.ZERO:
+		var lookDirection = velocity
+		look_at(lookDirection)
+		global_rotation.x = 0
+
+func find_location_to_move():
+	if CurrentTarget != null:
+		navSystem.target_position = CurrentTarget.global_position
 
 func Kill() -> void:
-	print("enemy dead")
-	pass
+	IsDead = true
 
-func check_visibily_with_player(directionToLook: Vector3) -> Dictionary :
-	var hitResult: Dictionary = {}
-	var space_state = get_world_3d().direct_space_state
-	
-	var enemyForward = global_transform.basis.z.normalized()
-	var enemyUp = global_transform.basis.y.normalized()	
-	var forwardOffset = enemyForward * 1.2;
-	var upOffset = enemyUp * 1.4;
-	
-	var raycastOrigin = global_transform.origin + upOffset
-	var raycastEnd =  raycastOrigin + directionToLook * enemyBrain.VisionDistanceMeter
-	draw_line(raycastOrigin, raycastEnd, Color.BLUE)
-	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(raycastOrigin, raycastEnd)
-	query.collide_with_bodies = true
-	query.collide_with_areas = true
-	query.collision_mask = 0xFFFFFFFF
-	query.exclude = [self]
-	hitResult = space_state.intersect_ray(query)
-
-	return hitResult;
-
-@onready var immediate_mesh = $ImmediateMesh
-@onready var debug_mesh: MeshInstance3D = $"../DebugMesh"
-
+@onready var level_debug_mesh: MeshInstance3D = currentScene.get_node("Level/LevelDebugMesh")
 func draw_line(startPoint: Vector3, endPoint :Vector3, inColor: Color):
 	var mat = StandardMaterial3D.new()
 	mat.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
 	mat.albedo_color = inColor
 	
-	debug_mesh.mesh = ImmediateMesh.new()
-	debug_mesh.material_override = mat
-	debug_mesh.mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-	debug_mesh.mesh.surface_add_vertex(startPoint)
-	debug_mesh.mesh.surface_add_vertex(endPoint)
-	debug_mesh.mesh.surface_end()
+	level_debug_mesh.mesh = ImmediateMesh.new()
+	level_debug_mesh.material_override = mat
+	level_debug_mesh.mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+	level_debug_mesh.mesh.surface_add_vertex(startPoint)
+	level_debug_mesh.mesh.surface_add_vertex(endPoint)
+	level_debug_mesh.mesh.surface_end()
