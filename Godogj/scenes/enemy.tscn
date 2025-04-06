@@ -19,6 +19,7 @@ script = ExtResource("1_7p1mj")
 mesh = SubResource("CapsuleMesh_md0e3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.38, 0, 0, 0, 1.38, 0, 0, 0, 1.38, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_4ra3w")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
