@@ -9,7 +9,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var PlayerNode = get_tree().current_scene.get_node("Player")
+	var PlayerNode = get_tree().current_scene.get_node("Level").get_node("Player")
 	var PlayerLocation = PlayerNode.transform.origin
 	var Cameralocation = PlayerLocation + DistanceToPlayer;
 	transform.origin = Cameralocation
