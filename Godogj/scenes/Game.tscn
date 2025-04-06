@@ -1,6 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://daoxpgv3werhr"]
+[gd_scene load_steps=4 format=3 uid="uid://daoxpgv3werhr"]
 
 [ext_resource type="Script" uid="uid://bba1aw84ck6f0" path="res://scripts/Game.gd" id="1_ibkli"]
+[ext_resource type="Script" uid="uid://boeqyp7i1aiu0" path="res://scripts/UI/ScoreHudComponent.gd" id="2_qbsmt"]
+
+[sub_resource type="Environment" id="Environment_qbsmt"]
+background_mode = 3
+adjustment_enabled = true
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_ibkli")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -245.0
+offset_top = 33.0
+offset_right = -57.0
+offset_bottom = 131.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 2
+script = ExtResource("2_qbsmt")
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/Control"]
+environment = SubResource("Environment_qbsmt")

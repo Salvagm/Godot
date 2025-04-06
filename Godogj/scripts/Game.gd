@@ -6,10 +6,19 @@ var CurrentGamelevel = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SwitchLevel()
-	GameManager.ResetLevel.connect(SwitchLevel)
+	GameManager.PlayerDiedSignal.connect(_OnPlayerDied)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	pass
+
+func _OnPlayerDied():
+	#Player Dead anim
+	#Timer - 2 secs
+	#Fade
+	#UI
+	#Fade to back
+	SwitchLevel()
 	pass
 
 func SwitchLevel() ->void:

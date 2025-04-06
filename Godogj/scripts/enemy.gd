@@ -99,6 +99,10 @@ func find_location_to_move():
 func Kill() -> void:
 	IsDead = true
 
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body is Player:
+		GameManager.RegisterHit($".", body)
+
 @onready var level_debug_mesh: MeshInstance3D = currentScene.get_node("Level/LevelDebugMesh")
 func draw_line(startPoint: Vector3, endPoint :Vector3, inColor: Color):
 	var mat = StandardMaterial3D.new()
