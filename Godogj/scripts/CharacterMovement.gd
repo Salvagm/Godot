@@ -4,6 +4,10 @@ extends CharacterBody3D
 
 var IsRunning : float = 0.0
 var IsJumping : float = 0.0
+var IsAttacking : float = 0.0
+var IsSpecialAttack : float = 0.0
+
+var AttackCooldown : float = 0.0
 
 const SPEED = 8.5
 const JUMP_VELOCITY = 5
@@ -11,9 +15,30 @@ const JUMP_VELOCITY = 5
 func update_anim_tree():
 	animation_tree["parameters/Run/blend_amount"] = IsRunning
 	animation_tree["parameters/Jump/blend_amount"] = IsJumping
+	animation_tree["parameters/Attack/add_amount"] = IsAttacking
+	animation_tree["parameters/AttackBlendTree/IsSpecialAttack/blend_amount"] = IsSpecialAttack
 
+func _input(event: InputEvent) -> void:
+	if AttackCooldown <= 0.0:
+		if event.is_action_pressed("AttackBasic"):
+			IsAttacking = 1.0
+			AttackCooldown = 1.0
+			IsSpecialAttack = 0.0
+			animation_tree["parameters/AttackOneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		elif event.is_action_pressed("AttackSpecial"):
+			IsAttacking = 1.0
+			IsSpecialAttack = 1.0
+			AttackCooldown = 1.2
+			animation_tree["parameters/AttackOneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+			
 
 func _process(delta: float) -> void:
+	if AttackCooldown > 0:
+		AttackCooldown -= delta
+		if AttackCooldown <= 0.0:
+			AttackCooldown = 0.0
+			IsAttacking = 0.0
+			IsSpecialAttack = 0.0
 	update_anim_tree()
 
 
