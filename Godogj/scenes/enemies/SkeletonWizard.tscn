@@ -1,12 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0em2q3c6qaq5"]
+[gd_scene load_steps=9 format=3 uid="uid://b0em2q3c6qaq5"]
 
 [ext_resource type="Script" uid="uid://ckwym7j4jm8db" path="res://scripts/enemy.gd" id="1_7p1mj"]
 [ext_resource type="PackedScene" uid="uid://bo8g7v86tpdr6" path="res://assets/skeleton/characters/gltf/Skeleton_Mage.glb" id="2_md0e3"]
+[ext_resource type="Script" uid="uid://dlj17hvbmf7jn" path="res://scenes/enemies/EnemyAnimTree.gd" id="3_idc25"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ra3w"]
 height = 2.2
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pmm84"]
+animation = &"Idle_B"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_idc25"]
+animation = &"Running_B"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_u2kts"]
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pmm84"]
+graph_offset = Vector2(-544.614, 232.801)
+"nodes/Anim Idle_B/node" = SubResource("AnimationNodeAnimation_pmm84")
+"nodes/Anim Idle_B/position" = Vector2(-173.333, 213.333)
+"nodes/Anim Run_B/node" = SubResource("AnimationNodeAnimation_idc25")
+"nodes/Anim Run_B/position" = Vector2(-240, 426.667)
+nodes/Run/node = SubResource("AnimationNodeBlend2_u2kts")
+nodes/Run/position = Vector2(213.333, 200)
+nodes/output/position = Vector2(453.333, 213.333)
+node_connections = [&"Run", 0, &"Anim Idle_B", &"Run", 1, &"Anim Run_B", &"output", 0, &"Run"]
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 4
@@ -114,5 +142,7 @@ transform = Transform3D(0.99972, -1.40143e-09, 0.0236466, 1.39341e-09, 1, 3.5568
 [node name="AnimationTree" type="AnimationTree" parent="Skeleton_Mage"]
 tree_root = SubResource("AnimationNodeBlendTree_pmm84")
 anim_player = NodePath("../AnimationPlayer")
+parameters/Run/blend_amount = 0.0
+script = ExtResource("3_idc25")
 
 [editable path="Skeleton_Mage"]
