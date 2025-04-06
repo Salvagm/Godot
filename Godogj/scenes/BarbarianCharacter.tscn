@@ -10,7 +10,7 @@
 size = Vector3(0.695801, 0.77832, 0.317383)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rrijo"]
-size = Vector3(1, 0.832642, 0.388428)
+size = Vector3(1, 1.19183, 1.06134)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p1yxr"]
 animation = &"Jump_Idle"
@@ -150,6 +150,7 @@ bones/47/rotation = Quaternion(-0.758253, -1.52737e-07, 0.651961, -1.11759e-08)
 transform = Transform3D(5.86721e-07, 0.262863, 0.964832, 0.999999, -3.99356e-07, -2.66236e-07, 4.53989e-07, 0.964833, -0.262863, 0.516524, 0.636705, 0.0136164)
 
 [node name="OffHandCollisionArea" type="Area3D" parent="Model/Rig/Skeleton3D/1H_Axe_Offhand/1H_Axe_Offhand" index="0"]
+collision_mask = 7
 
 [node name="OffHandCollisionShape" type="CollisionShape3D" parent="Model/Rig/Skeleton3D/1H_Axe_Offhand/1H_Axe_Offhand/OffHandCollisionArea"]
 transform = Transform3D(1, -3.41061e-13, -7.10543e-15, 9.97602e-12, 1, 0, -4.77485e-12, -5.06639e-07, 1, -0.1521, 0.661621, 0.0161126)
@@ -166,10 +167,10 @@ transform = Transform3D(0.999997, 0.000956449, 0.00230214, -0.000955051, 0.99999
 transform = Transform3D(-4.8469e-07, -0.149894, 0.988701, 0.999999, -1.9074e-07, 1.925e-07, 4.99794e-07, 0.988701, 0.149894, -0.496054, 0.64103, 0.139528)
 
 [node name="MainHandCollisionArea" type="Area3D" parent="Model/Rig/Skeleton3D/1H_Axe/1H_Axe" index="0"]
-collision_mask = 4
+collision_mask = 7
 
 [node name="MainHandCollisionShape" type="CollisionShape3D" parent="Model/Rig/Skeleton3D/1H_Axe/1H_Axe/MainHandCollisionArea"]
-transform = Transform3D(1, -5.06645e-07, 5.32907e-15, -1.2815e-06, 0.999998, 1.49012e-08, 1.11759e-06, 4.02331e-07, 1, -4.17233e-07, 0.796081, -0.012329)
+transform = Transform3D(1, -5.0665e-07, 5.32907e-15, -1.2815e-06, 0.999998, 1.49012e-08, 1.11759e-06, 4.02331e-07, 1, -5.96046e-07, 0.975677, -0.0412291)
 shape = SubResource("BoxShape3D_rrijo")
 
 [node name="2H_Axe" parent="Model/Rig/Skeleton3D" index="3"]

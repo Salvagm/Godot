@@ -19,13 +19,14 @@ func _process(delta: float) -> void:
 		for Body in BodiesInContactWithOffHand:
 			if player_root.IsSpecialAttack: #off hand only used when in special attack
 				BodiesToProcessHit.push_back(Body)
+				print(Body.to_string() + " damaged with OffHand")
 		for Body in BodiesInContactWithMainHand:
 			if not BodiesToProcessHit.has(Body): #check if wasn't added by the offhand weapon
 				BodiesToProcessHit.push_back(Body)
+				print(Body.to_string() + " damaged with MainHand")
 				
 		for Body in BodiesToProcessHit:
 			GameManager.RegisterHit(player_root, Body)
-			print(Body.to_string() + " damaged")
 			
 		BodiesInContact.clear()
 		BodiesInContactWithOffHand.clear()
