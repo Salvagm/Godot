@@ -32,13 +32,6 @@ func _process(delta: float) -> void:
 		BodiesInContactWithOffHand.clear()
 		BodiesInContactWithMainHand.clear()
 
-func _on_off_hand_collision_area_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
-	var other_shape_owner_id = area.shape_find_owner(area_shape_index)
-	var other_shape_node = area.shape_owner_get_owner(other_shape_owner_id)
-	var other_shape_owner = other_shape_node.get_owner()
-	GameManager.RegisterHit(player_root, other_shape_owner)
-
-
 func RefreshBodiesInContact() ->void:
 	var BodiesToKeep : Array[Node3D]
 	for Body in BodiesInContact:

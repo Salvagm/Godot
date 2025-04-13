@@ -67,9 +67,9 @@ func _process(delta: float) -> void:
 	if IsAttacking > 0:
 		AttackTimer += delta
 		if IsSpecialAttack:
-			DamageEnabled = AttackTimer >= 0.5 and AttackTimer < 0.8
+			DamageEnabled = AttackTimer >= 0.6 and AttackTimer < 0.74
 		else:
-			DamageEnabled = AttackTimer >= 0.3 and AttackTimer < 0.6
+			DamageEnabled = AttackTimer >= 0.34 and AttackTimer < 0.42
 			
 	update_anim_tree()
 
@@ -82,8 +82,6 @@ func _physics_process(delta: float) -> void:
 	if DashDecelerationInverse > 0.0:
 		var PrevValue = DashDecelerationInverse
 		DashDecelerationInverse = max(0.0, DashDecelerationInverse - delta);
-		if DashDecelerationInverse <= 0.2 and PrevValue > 0.2:
-			pass#model.LerpTransparency(1.0, 0.1)
 		if DashDecelerationInverse == 0:
 			ProcessDash(false)
 		
