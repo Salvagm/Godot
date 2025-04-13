@@ -17,7 +17,14 @@ var AttackCooldown : float = 0.0
 var AttackTimer : float = 0.0
 
 const SPEED = 8.5
+const DashSpeedBoost = 25.0
+const DashSpeedTime = 0.25
 const JUMP_VELOCITY = 5
+
+#Dash variables
+var DashDecelerationInverse = 0.0
+var CurrrentMoveDirection : Vector3 = Vector3(0.0 , 0.0, 0.0)
+
 
 func update_anim_tree():
 	animation_tree["parameters/Run/blend_amount"] = IsRunning
@@ -39,6 +46,8 @@ func _input(event: InputEvent) -> void:
 			AttackCooldown = 1.2
 			AttackTimer = 0
 			animation_tree["parameters/AttackOneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		elif event.is_action_pressed("DashAbility"):
+			DashDecelerationInverse = DashSpeedTime
 			
 
 func _process(delta: float) -> void:
@@ -65,6 +74,11 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if IsDead:
 		return
+		
+	# Decelerate dash
+	if DashDecelerationInverse > 0.0:
+		DashDecelerationInverse = max(0.0, DashDecelerationInverse - delta);
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -83,13 +97,22 @@ func _physics_process(delta: float) -> void:
 	if lookAt_Direction:
 		look_at(lookAt_Position)
 	
-	if moveDirection:
+	#we are actively dashing
+	if DashDecelerationInverse > 0.0:
+		var DecelerationNormalized = DashDecelerationInverse / DashSpeedTime
+		var DashVelocity = DashSpeedBoost * DecelerationNormalized
+		velocity.x = CurrrentMoveDirection.x * (SPEED + DashVelocity)
+		velocity.z = CurrrentMoveDirection.z * (SPEED + DashVelocity)
+	#else if we are moving with input direction
+	elif moveDirection:
+		CurrrentMoveDirection = moveDirection
 		velocity.x = moveDirection.x * SPEED
 		velocity.z = moveDirection.z * SPEED
+	#as last resort just decelerate
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	
 	if velocity:
 		if is_on_floor():
 			IsRunning = 1.0
