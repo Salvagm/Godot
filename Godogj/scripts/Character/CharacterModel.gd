@@ -15,7 +15,10 @@ func _ready() -> void:
 			if not material.resource_local_to_scene:
 				material = material.duplicate()
 				material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-				material.flags_transparent = true
+				#material.blend_mode = BaseMaterial3D.BLEND_MODE_MUL
+				material.cull_mode = BaseMaterial3D.CULL_BACK
+				material.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_ALWAYS
+				#material.flags_transparent = true
 				ChildMesh.set_surface_override_material(0, material)
 			else:
 				material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
