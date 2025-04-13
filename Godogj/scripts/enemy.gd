@@ -19,8 +19,13 @@ var IsDead:= false as bool
 var CurrentTarget: Player = null
 var visionDistanceSquared: float = 0.0
 var coneRangeValue: float = 0.0
+var enemyMesh: EnemyMesh
 
 func _ready() -> void:
+	var enemyMeshChildren = find_children("*", "EnemyMesh", false)
+	if enemyMeshChildren.is_empty() == false:
+		enemyMesh = enemyMeshChildren[0]
+	
 	visionDistanceSquared = vision_distance_meters * vision_distance_meters
 	coneRangeValue = cos(deg_to_rad(vision_cone_degrees))
 	LastKnownLocation = global_position
@@ -42,9 +47,10 @@ func update_target(delta: float):
 	if currentLocation.distance_squared_to(playerLocation) > visionDistanceSquared:
 		return
 	
-	var faceDirection = global_transform.basis.z;
+	var faceDirection = enemyMesh.get_eye_transform().basis.z;
 	var enemyToPlayerDirection = currentLocation.direction_to(playerLocation).normalized()	
 	var dotResult = faceDirection.dot(enemyToPlayerDirection)
+
 	# Not in cone
 	if dotResult < coneRangeValue:
 		return
@@ -59,7 +65,7 @@ func update_target(delta: float):
 func check_visibility(direction: Vector3) -> Dictionary:
 	var space_state = get_world_3d().direct_space_state
 
-	var raycastOrigin = global_transform.origin + Vector3.UP * 1.6
+	var raycastOrigin = enemyMesh.get_eye_location()
 	var raycastEnd = raycastOrigin + direction * vision_distance_meters
 
 	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(raycastOrigin, raycastEnd)
