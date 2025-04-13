@@ -18,7 +18,7 @@ func _OnPlayerDied():
 	#Fade
 	#UI
 	#Fade to back
-	SwitchLevel()
+	call_deferred("SwitchLevel")
 	pass
 
 func SwitchLevel() ->void:
