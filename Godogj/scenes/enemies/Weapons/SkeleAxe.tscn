@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkbbh71qalf64"]
+
+[ext_resource type="Script" uid="uid://dr82gta0r2svq" path="res://scenes/enemies/Weapons/EnemyWeapon.gd" id="1_qwppn"]
+[ext_resource type="PackedScene" uid="uid://cwtdk4y2h5u5y" path="res://assets/skeleton/assets/gltf/Skeleton_Axe.gltf" id="2_s8qsr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s8qsr"]
+size = Vector3(1, 0.7, 0.2)
+
+[node name="SkeleAxe" type="Node3D"]
+script = ExtResource("1_qwppn")
+weapon_range_meters = 2.0
+weapon_attack_speed = 1.5
+attack_animations = Array[StringName]([&"2H_Melee_Attack_Chop"])
+
+[node name="Skeleton_Axe2" parent="." instance=ExtResource("2_s8qsr")]
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.640804, 0)
+shape = SubResource("BoxShape3D_s8qsr")

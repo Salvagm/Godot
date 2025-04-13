@@ -13,6 +13,8 @@ class_name Enemy extends CharacterBody3D
 @onready var currentScene:= get_tree().current_scene as Node3D
 @onready var navSystem:= $NavigationAgent3D as NavigationAgent3D
 @onready var player: Player = currentScene.get_node("Level").get_node("Player")
+@onready var animation_player: AnimationPlayer
+@onready var animation_tree: AnimationTree
 
 var LastKnownLocation: Vector3
 var IsDead:= false as bool
@@ -20,23 +22,46 @@ var CurrentTarget: Player = null
 var visionDistanceSquared: float = 0.0
 var coneRangeValue: float = 0.0
 var enemyMesh: EnemyMesh
+var equippedWeapon: EnemyWeapon
+
+# TODO: Remove this and set the weapon to use in editor
+var randomWeapon = [
+	"res://scenes/enemies/Weapons/SkeleAxe.tscn", 
+	#"res://scenes/enemies/Weapons/SkeleStaff.tscn", 
+	#"res://scenes/enemies/Weapons/SkeleSword.tscn",
+]
 
 func _ready() -> void:
 	var enemyMeshChildren = find_children("*", "EnemyMesh", false)
 	if enemyMeshChildren.is_empty() == false:
 		enemyMesh = enemyMeshChildren[0]
-	
+		load_weapon()
+		animation_player = enemyMesh.get_node("AnimationPlayer")
+		animation_tree = enemyMesh.get_node("AnimationTree")
+
 	visionDistanceSquared = vision_distance_meters * vision_distance_meters
 	coneRangeValue = cos(deg_to_rad(vision_cone_degrees))
 	LastKnownLocation = global_position
 
+func load_weapon() -> void:
+	var weaponToPick = randi_range(0, randomWeapon.size() - 1)
+	equippedWeapon = ResourceLoader.load(randomWeapon[weaponToPick]).instantiate()
+	equippedWeapon.set_character_owner(self)
+	enemyMesh.attach_to_hand(equippedWeapon, EnemyMesh.HandEnum.RIGHT)
+
 func _physics_process(delta: float) -> void:
 	if is_dead() or GameManager.IsGameOver:
 		return
+		
+	
 	update_target(delta)
 	update_look_direction()	
 	find_location_to_move()
-	move_to_target(delta)
+	
+	if CurrentTarget != null && equippedWeapon != null && equippedWeapon.can_use_weapon(CurrentTarget.global_position):
+		equippedWeapon.use_weapon()
+	if not equippedWeapon.is_attacking():
+		move_to_target(delta)
 
 func update_target(delta: float):
 	var playerLocation = player.global_transform.origin
@@ -104,20 +129,3 @@ func find_location_to_move():
 func Kill() -> void:
 	IsDead = true
 	queue_free()
-
-func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body is Player:
-		GameManager.RegisterHit($".", body)
-
-#@onready var level_debug_mesh: MeshInstance3D = currentScene.get_node("Level/LevelDebugMesh")
-#func draw_line(startPoint: Vector3, endPoint :Vector3, inColor: Color):
-	#var mat = StandardMaterial3D.new()
-	#mat.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
-	#mat.albedo_color = inColor
-	#
-	#level_debug_mesh.mesh = ImmediateMesh.new()
-	#level_debug_mesh.material_override = mat
-	#level_debug_mesh.mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-	#level_debug_mesh.mesh.surface_add_vertex(startPoint)
-	#level_debug_mesh.mesh.surface_add_vertex(endPoint)
-	#level_debug_mesh.mesh.surface_end()

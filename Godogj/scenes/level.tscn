@@ -20,7 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31798, 0.23215, -0.215599)
 [node name="Node3D" parent="." instance=ExtResource("5_ppgk2")]
 
 [node name="Enemy" parent="." instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 4, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19, 4, 0)
 
 [node name="Enemy2" parent="." instance=ExtResource("1_2q6dc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4, -6)
